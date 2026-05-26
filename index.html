@@ -221,7 +221,13 @@
 </footer>
   </main>
 
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = 'https://yqkrvgzvttofxhayrgvl.supabase.co'
+const SUPABASE_ANON_KEY = 'sb_publishable_-gA-TrlIaWszf_GJ77pNhw_ZiwO9jSX'
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
     function initScrollMotion(){
       const motionTargets=[
         '.eyebrow','h1','.subhead','.shock','.proof','.signup-card','.visual-wrap','.section h2','.lead','.pain-card','.quote','.step','.bottom-cta h2','.bottom-cta p','.bottom-cta .cta'
@@ -479,7 +485,7 @@
       window.scrollTo({top:y,behavior:'smooth'});
     }
     modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
-    heroSignupForm.addEventListener('submit',e=>{
+    heroSignupForm.addEventListener('submit',async e=>{
       e.preventDefault();
       clearFormErrors(heroSignupForm);
       const t=translations[currentLang];
@@ -491,6 +497,24 @@
       if(!isValidEmail(email.value))return showError(email,t.errEmail);
       if(!state.value)return showError(state,currentLang==='es'?'Por favor selecciona tu estado.':'Please select your state.');
       if(!goal.value)return showError(goal,t.errGoal);
+      const { error } = await supabaseClient
+        .from('waitlist')
+        .insert([
+          {
+            first_name: name.value.trim(),
+            email: email.value.trim(),
+            state: state.value,
+            goal: goal.value,
+            language: currentLang
+          }
+        ]);
+
+      if(error){
+        console.error(error);
+        alert(currentLang==='es' ? 'Algo salió mal. Inténtalo de nuevo.' : 'Something went wrong. Please try again.');
+        return;
+      }
+
       nextSpot();
       openModal(true);
     });
