@@ -498,7 +498,7 @@ const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
       if(!state.value)return showError(state,currentLang==='es'?'Por favor selecciona tu estado.':'Please select your state.');
       if(!goal.value)return showError(goal,t.errGoal);
       const { error } = await supabaseClient
-        .from('waitlist')
+        .from('Waitlist')
         .insert([
           {
             first_name: name.value.trim(),
