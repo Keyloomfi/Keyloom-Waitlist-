@@ -169,10 +169,10 @@
         <div class="success-icon">🏠</div>
         <h4>Thank you for signing up.</h4>
         <div class="waitlist-badge">You reserved spot <span id="spotNumber">#143</span></div>
-        <p>We’ll let you know the moment Keyloom launches.</p>
-        <p>Most people spend years guessing where they stand financially — hoping they’re ready, without ever really knowing.</p>
+        <p>We'll let you know the moment Keyloom launches.</p>
+        <p>Most people spend years guessing where they stand financially — hoping they're ready, without ever really knowing.</p>
         <p>Keyloom was built to give people clarity before the pressure, before the confusion, and before the lender calls start.</p>
-        <p><strong>You’re officially on the list. No pressure. No spam calls. Just clarity.</strong></p>
+        <p><strong>You're officially on the list. No pressure. No spam calls. Just clarity.</strong></p>
         <button class="cta" onclick="closeModal()">Back to Keyloom</button>
       </div>
     </div>
@@ -194,9 +194,9 @@
       <div>
         <div class="eyebrow">Early Access · Mortgage Clarity</div>
         <h1>Most people guess.<br><span>Then hope the<br>bank says yes.</span></h1>
-        <p class="hero-emotional">Most people don’t realize they’re not ready until it’s too late.</p>
+        <p class="hero-emotional">Most people don't realize they're not ready until it's too late.</p>
         <p class="subhead">Know where you stand before buying a home, refinancing, or getting told no.</p>
-        <div class="shock">The scary part is not being told “no.” <strong>It’s realizing too late that no one explained the <span style="color:var(--teal)">process</span>.</strong></div>
+        <div class="shock">The scary part is not being told "no." <strong>It's realizing too late that no one explained the <span style="color:var(--teal)">process</span>.</strong></div>
         <div class="proof-row">
           <div class="proof">🛡️ No hard credit pull</div><div class="proof">🚫 No spam calls</div><div class="proof">🏠 Built for buyers</div>
         </div>
@@ -247,12 +247,10 @@
                 <circle class="gauge-end-dot" cx="38" cy="150" r="5"/>
                 <circle class="gauge-end-dot" cx="292" cy="150" r="5"/>
               </svg>
-
               <div class="gauge-inner">
                 <div class="g-num" id="gauge-num">0</div>
                 <div class="gauge-sub">Score</div>
               </div>
-
               <div class="gauge-scale">
                 <span>0</span>
                 <span>100</span>
@@ -299,7 +297,7 @@
     <section class="section" style="background:var(--cream)">
       <div class="section-inner">
         <div class="quote">
-          <p>“Before you ask what you can buy, maybe the better question is what kind of life that payment leaves you with.”</p>
+          <p>"Before you ask what you can buy, maybe the better question is what kind of life that payment leaves you with."</p>
           <span>Keyloom is built for the buyer who wants the truth before they get emotionally attached to a house, a rate, or a payment that was never explained clearly.</span>
         </div>
       </div>
@@ -327,7 +325,6 @@
       <div class="footer-disclaimer">
         Keyloom Financial Technologies LLC is not a lender, mortgage broker, mortgage originator, underwriter, financial advisor, or credit repair service. Keyloom does not make credit decisions, underwrite loans, issue pre-approvals, or determine eligibility for any mortgage product. The BuyReady Score is an educational self-assessment tool only. It is not a pre-approval, pre-qualification, loan estimate, underwriting decision, or commitment to lend. Actual mortgage eligibility, loan terms, and approval decisions are determined solely by licensed lenders and their underwriters based on their own criteria. Keyloom does not guarantee any outcome with any lender. Estimated scores shown on this page are illustrative examples and do not reflect actual user data.
       </div>
-
       <div class="footer-bottom">
         <strong>Keyloom</strong> is not a lender. We are an education and clarity platform.
         © 2026 Keyloom Financial Technologies.
@@ -343,40 +340,27 @@
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
     function initScrollMotion(){
-      const motionTargets=[
-        '.eyebrow','h1','.subhead','.shock','.proof','.signup-card','.visual-wrap','.section h2','.lead','.pain-card','.quote','.step','.bottom-cta h2','.bottom-cta p','.bottom-cta .cta'
-      ];
+      const motionTargets=['.eyebrow','h1','.subhead','.shock','.proof','.signup-card','.visual-wrap','.section h2','.lead','.pain-card','.quote','.step','.bottom-cta h2','.bottom-cta p','.bottom-cta .cta'];
       document.querySelectorAll(motionTargets.join(',')).forEach((el,i)=>{
         el.classList.add('scroll-pop');
         if(i%4) el.classList.add('delay-'+(i%4));
       });
       const observer=new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
+        entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}});
       },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
       document.querySelectorAll('.scroll-pop').forEach(el=>observer.observe(el));
-
       const lagItems=document.querySelectorAll('.visual-wrap,.signup-card,.score-card,.quote');
       lagItems.forEach(el=>el.classList.add('lag-float'));
       let ticking=false;
       function updateLag(){
-        lagItems.forEach((el,idx)=>{
+        lagItems.forEach(el=>{
           const rect=el.getBoundingClientRect();
-          const center=rect.top+(rect.height/2);
-          const screenCenter=window.innerHeight/2;
-          const offset=(center-screenCenter)*-.018;
-          const clamped=Math.max(-14,Math.min(14,offset));
-          el.style.transform='translateY('+clamped+'px)';
+          const offset=((rect.top+(rect.height/2))-(window.innerHeight/2))*-.018;
+          el.style.transform='translateY('+Math.max(-14,Math.min(14,offset))+'px)';
         });
         ticking=false;
       }
-      window.addEventListener('scroll',()=>{
-        if(!ticking){requestAnimationFrame(updateLag);ticking=true;}
-      },{passive:true});
+      window.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(updateLag);ticking=true;}},{passive:true});
       updateLag();
     }
     document.addEventListener('DOMContentLoaded',initScrollMotion);
@@ -387,119 +371,91 @@
         eyebrow:'Early Access · Mortgage Clarity',
         headline:'Most people guess.<br><span>Then hope the<br>bank says yes.</span>',
         sub:'Know where you stand before buying a home, refinancing, or getting told no.',
-        emotional:'Most people don’t realize they’re not ready until it’s too late.',
-        shock:'The scary part is not being told “no.” <strong>It’s realizing too late that no one explained the <span style="color:var(--teal)">process</span>.</strong>',
-        proofs:['🛡️ No hard credit pull','🚫 No spam calls','🏠 Built for buyers'],
+        emotional:'Most people don\u2019t realize they\u2019re not ready until it\u2019s too late.',
+        shock:'The scary part is not being told \u201cno.\u201d <strong>It\u2019s realizing too late that no one explained the <span style="color:var(--teal)">process</span>.</strong>',
+        proofs:['\uD83D\uDEE1\uFE0F No hard credit pull','\uD83D\uDEAB No spam calls','\uD83C\uDFE0 Built for buyers'],
         signupTitle:'Get early access to your BuyReady Score',
         signupCopy:'Join the waitlist and be first to test Keyloom when we open access.',
-        firstName:'First name',
-        email:'Email address',
-        statePrompt:'What state are you in?',
-        goal:'What are you trying to do?',
+        firstName:'First name',email:'Email address',statePrompt:'What state are you in?',goal:'What are you trying to do?',
         options:['Buy my first home','Buy another home','Refinance','Use home equity','Not sure yet'],
-        secure:'Secure My Spot →',
-        micro:'No spam. No sales calls. Just early access.',
-        privateLabel:'Private readiness check',
-        live:'Live Example',
-        homeReady:'● Home Ready (78/100) 🏠',
-        income:'Income',
-        savings:'Savings',
-        credit:'Credit',
+        secure:'Secure My Spot \u2192',micro:'No spam. No sales calls. Just early access.',
+        privateLabel:'Private readiness check',live:'Live Example',
+        homeReady:'\u25CF Home Ready (78/100) \uD83C\uDFE0',
+        income:'Income',savings:'Savings',credit:'Credit',
         scoreNotice:'For educational and clarity purposes only. The BuyReady Score is not a pre-approval, pre-qualification, loan estimate, or commitment to lend.',
         scoreTitle:'What is the BuyReady Score?',
         scoreText:'The BuyReady Score measures how prepared you are to purchase a home, refinance, or tap into home equity based on your income, savings, credit, and overall financial profile.',
         scoreDifference:'Unlike a credit score, the BuyReady Score shows how close you are to becoming mortgage-ready.',
-        scoreFactors:['✓ Credit Health','✓ Income Stability','✓ Savings & Down Payment Readiness','✓ Debt-to-Income Ratio','✓ Overall Mortgage Readiness'],
-        modalTitle:"You're closer than you think.",
+        scoreFactors:['\u2713 Credit Health','\u2713 Income Stability','\u2713 Savings & Down Payment Readiness','\u2713 Debt-to-Income Ratio','\u2713 Overall Mortgage Readiness'],
+        modalTitle:'You\u2019re closer than you think.',
         modalCopy:'Most people never really know where they stand until someone tells them no. Keyloom was built to change that.',
-        modalButton:'Join Early Access →',
-        thank:'Thank you for signing up.',
-        spotPrefix:'You reserved spot ',
-        thank1:'We’ll let you know the moment Keyloom launches.',
-        thank2:'Most people spend years guessing where they stand financially — hoping they’re ready, without ever really knowing.',
+        modalButton:'Join Early Access \u2192',
+        thank:'Thank you for signing up.',spotPrefix:'You reserved spot ',
+        thank1:'We\u2019ll let you know the moment Keyloom launches.',
+        thank2:'Most people spend years guessing where they stand financially \u2014 hoping they\u2019re ready, without ever really knowing.',
         thank3:'Keyloom was built to give people clarity before the pressure, before the confusion, and before the lender calls start.',
-        thank4:'You’re officially on the list. No pressure. No spam calls. Just clarity.',
+        thank4:'You\u2019re officially on the list. No pressure. No spam calls. Just clarity.',
         back:'Back to Keyloom',
         sectionTitle:'The mortgage process should not make you feel stupid.',
         sectionLead:'It should tell you the truth early enough to actually do something about it.',
         painTitles:['Fear','Pressure','Dignity'],
-        painText:['Not knowing if you are ready. Not knowing what payment is actually safe. Not knowing if one mistake will blow everything up.','Most people want answers, not a phone full of lenders racing to close them before they understand the numbers.','Keyloom lets you look at your situation privately first — without shame, judgment, or being treated like a lead.'],
-        quote:'“Before you ask what you can buy, maybe the better question is what kind of life that payment leaves you with.”',
+        painText:['Not knowing if you are ready. Not knowing what payment is actually safe. Not knowing if one mistake will blow everything up.','Most people want answers, not a phone full of lenders racing to close them before they understand the numbers.','Keyloom lets you look at your situation privately first \u2014 without shame, judgment, or being treated like a lead.'],
+        quote:'\u201cBefore you ask what you can buy, maybe the better question is what kind of life that payment leaves you with.\u201d',
         quoteSub:'Keyloom is built for the buyer who wants the truth before they get emotionally attached to a house, a rate, or a payment that was never explained clearly.',
-        howTitle:'How Keyloom works',
-        howLead:'Simple enough to start in minutes. Serious enough to change how people prepare for homeownership.',
+        howTitle:'How Keyloom works',howLead:'Simple enough to start in minutes. Serious enough to change how people prepare for homeownership.',
         stepTitles:['Answer a few private questions','See your BuyReady Score','Move only when ready'],
         stepText:['No hard pull. No lender handoff. Just enough to understand where you are starting from.','Understand income, savings, credit, and your next best move without feeling judged.','If you want help later, you control when and how you connect with a licensed professional.'],
-        bottomTitle:'Your answer is under 5 minutes away.',
-        bottomSub:'Join the early access list and stop guessing where you stand.',
-        bottomBtn:'Join Early Access →',
-        footer:'<div class="footer-disclaimer">Keyloom Financial Technologies LLC is not a lender, mortgage broker, mortgage originator, underwriter, financial advisor, or credit repair service. Keyloom does not make credit decisions, underwrite loans, issue pre-approvals, or determine eligibility for any mortgage product. The BuyReady Score is an educational self-assessment tool only. It is not a pre-approval, pre-qualification, loan estimate, underwriting decision, or commitment to lend. Actual mortgage eligibility, loan terms, and approval decisions are determined solely by licensed lenders and their underwriters based on their own criteria. Keyloom does not guarantee any outcome with any lender. Estimated scores shown on this page are illustrative examples and do not reflect actual user data.</div><div class="footer-bottom"><strong>Keyloom</strong> is not a lender. We are an education and clarity platform. © 2026 Keyloom Financial Technologies.</div>',
-        errName:'Please enter your first name.',
-        errEmail:'Please enter a valid email address.',
-        errGoal:'Please select what you are trying to do.'
+        bottomTitle:'Your answer is under 5 minutes away.',bottomSub:'Join the early access list and stop guessing where you stand.',bottomBtn:'Join Early Access \u2192',
+        footer:'<div class="footer-disclaimer">Keyloom Financial Technologies LLC is not a lender, mortgage broker, mortgage originator, underwriter, financial advisor, or credit repair service. Keyloom does not make credit decisions, underwrite loans, issue pre-approvals, or determine eligibility for any mortgage product. The BuyReady Score is an educational self-assessment tool only. It is not a pre-approval, pre-qualification, loan estimate, underwriting decision, or commitment to lend. Actual mortgage eligibility, loan terms, and approval decisions are determined solely by licensed lenders and their underwriters based on their own criteria. Keyloom does not guarantee any outcome with any lender. Estimated scores shown on this page are illustrative examples and do not reflect actual user data.</div><div class="footer-bottom"><strong>Keyloom</strong> is not a lender. We are an education and clarity platform. \u00a9 2026 Keyloom Financial Technologies.</div>',
+        errName:'Please enter your first name.',errEmail:'Please enter a valid email address.',errGoal:'Please select what you are trying to do.'
       },
       es:{
-        nav:'Cero llamadas spam. Cero presión. Solo claridad.',
-        eyebrow:'Acceso anticipado · Claridad hipotecaria',
-        headline:'La mayoría adivina.<br><span>Y espera que el<br>banco diga que sí.</span>',
-        sub:'Sepa dónde se encuentra antes de comprar una casa, refinanciar o recibir un no.',
-        emotional:'La mayoría no se da cuenta de que no está preparada hasta que es demasiado tarde.',
-        shock:'Lo más difícil no es que te digan “no.” <strong>Es darte cuenta demasiado tarde de que nadie te explicó el <span style="color:var(--teal)">proceso</span>.</strong>',
-        proofs:['🛡️ Sin revisión dura de crédito','🚫 Cero llamadas spam','🏠 Hecho para compradores'],
+        nav:'Cero llamadas spam. Cero presi\u00f3n. Solo claridad.',
+        eyebrow:'Acceso anticipado \u00b7 Claridad hipotecaria',
+        headline:'La mayor\u00eda adivina.<br><span>Y espera que el<br>banco diga que s\u00ed.</span>',
+        sub:'Sepa d\u00f3nde se encuentra antes de comprar una casa, refinanciar o recibir un no.',
+        emotional:'La mayor\u00eda no se da cuenta de que no est\u00e1 preparada hasta que es demasiado tarde.',
+        shock:'Lo m\u00e1s dif\u00edcil no es que te digan \u201cno.\u201d <strong>Es darte cuenta demasiado tarde de que nadie te explic\u00f3 el <span style="color:var(--teal)">proceso</span>.</strong>',
+        proofs:['\uD83D\uDEE1\uFE0F Sin revisi\u00f3n dura de cr\u00e9dito','\uD83D\uDEAB Cero llamadas spam','\uD83C\uDFE0 Hecho para compradores'],
         signupTitle:'Recibe acceso anticipado a tu Puntaje BuyReady',
-        signupCopy:'Únete a la lista de espera y sé de los primeros en probar Keyloom cuando abramos el acceso.',
-        firstName:'Nombre',
-        email:'Correo electrónico',
-        statePrompt:'¿En qué estado estás?',
-        goal:'¿Qué estás tratando de hacer?',
-        options:['Comprar mi primera casa','Comprar otra casa','Refinanciar','Usar el valor acumulado de mi vivienda','Todavía no estoy seguro'],
-        secure:'Reservar mi lugar →',
-        micro:'Sin spam. Sin llamadas de ventas. Solo acceso anticipado.',
-        privateLabel:'Revisión privada de preparación',
-        live:'Ejemplo ilustrativo',
-        homeReady:'● Listo para comprar (78/100) 🏠',
-        income:'Ingresos',
-        savings:'Ahorros',
-        credit:'Crédito',
-        scoreNotice:'Solo para fines educativos y de claridad. El Puntaje BuyReady no es una preaprobación, precalificación, estimación de préstamo ni compromiso de prestar.',
-        scoreTitle:'¿Qué es el Puntaje BuyReady?',
-        scoreText:'El Puntaje BuyReady mide qué tan preparado estás para comprar una vivienda, refinanciar o usar el valor acumulado de tu vivienda según tus ingresos, ahorros, crédito y perfil financiero general.',
-        scoreDifference:'A diferencia de un puntaje de crédito, el Puntaje BuyReady muestra qué tan cerca estás de estar listo para una hipoteca.',
-        scoreFactors:['✓ Salud crediticia','✓ Estabilidad de ingresos','✓ Preparación de ahorros y pago inicial','✓ Relación deuda-ingreso','✓ Preparación hipotecaria general'],
-        modalTitle:'Estás más cerca de lo que crees.',
-        modalCopy:'La mayoría no sabe realmente dónde está hasta que alguien le dice que no. Keyloom fue creado para cambiar eso.',
-        modalButton:'Unirme al acceso anticipado →',
-        thank:'Gracias por registrarte.',
-        spotPrefix:'Reservaste el lugar ',
+        signupCopy:'Un\u00e9te a la lista de espera y s\u00e9 de los primeros en probar Keyloom cuando abramos el acceso.',
+        firstName:'Nombre',email:'Correo electr\u00f3nico',statePrompt:'\u00bfEn qu\u00e9 estado est\u00e1s?',goal:'\u00bfQu\u00e9 est\u00e1s tratando de hacer?',
+        options:['Comprar mi primera casa','Comprar otra casa','Refinanciar','Usar el valor acumulado de mi vivienda','Todav\u00eda no estoy seguro'],
+        secure:'Reservar mi lugar \u2192',micro:'Sin spam. Sin llamadas de ventas. Solo acceso anticipado.',
+        privateLabel:'Revisi\u00f3n privada de preparaci\u00f3n',live:'Ejemplo ilustrativo',
+        homeReady:'\u25CF Listo para comprar (78/100) \uD83C\uDFE0',
+        income:'Ingresos',savings:'Ahorros',credit:'Cr\u00e9dito',
+        scoreNotice:'Solo para fines educativos y de claridad. El Puntaje BuyReady no es una preaprobaci\u00f3n, precalificaci\u00f3n, estimaci\u00f3n de pr\u00e9stamo ni compromiso de prestar.',
+        scoreTitle:'\u00bfQu\u00e9 es el Puntaje BuyReady?',
+        scoreText:'El Puntaje BuyReady mide qu\u00e9 tan preparado est\u00e1s para comprar una vivienda, refinanciar o usar el valor acumulado de tu vivienda seg\u00fan tus ingresos, ahorros, cr\u00e9dito y perfil financiero general.',
+        scoreDifference:'A diferencia de un puntaje de cr\u00e9dito, el Puntaje BuyReady muestra qu\u00e9 tan cerca est\u00e1s de estar listo para una hipoteca.',
+        scoreFactors:['\u2713 Salud crediticia','\u2713 Estabilidad de ingresos','\u2713 Preparaci\u00f3n de ahorros y pago inicial','\u2713 Relaci\u00f3n deuda-ingreso','\u2713 Preparaci\u00f3n hipotecaria general'],
+        modalTitle:'Est\u00e1s m\u00e1s cerca de lo que crees.',
+        modalCopy:'La mayor\u00eda no sabe realmente d\u00f3nde est\u00e1 hasta que alguien le dice que no. Keyloom fue creado para cambiar eso.',
+        modalButton:'Unirme al acceso anticipado \u2192',
+        thank:'Gracias por registrarte.',spotPrefix:'Reservaste el lugar ',
         thank1:'Te avisaremos en cuanto Keyloom se lance.',
-        thank2:'La mayoría pasa años adivinando dónde está financieramente — esperando estar lista, sin saberlo de verdad.',
-        thank3:'Keyloom fue creado para darte claridad antes de la presión, antes de la confusión y antes de que empiecen las llamadas de prestamistas.',
-        thank4:'Ya estás oficialmente en la lista. Sin presión. Sin spam. Solo claridad.',
+        thank2:'La mayor\u00eda pasa a\u00f1os adivinando d\u00f3nde est\u00e1 financieramente \u2014 esperando estar lista, sin saberlo de verdad.',
+        thank3:'Keyloom fue creado para darte claridad antes de la presi\u00f3n, antes de la confusi\u00f3n y antes de que empiecen las llamadas de prestamistas.',
+        thank4:'Ya est\u00e1s oficialmente en la lista. Sin presi\u00f3n. Sin spam. Solo claridad.',
         back:'Volver a Keyloom',
-        sectionTitle:'El proceso hipotecario no debería hacerte sentir perdido.',
-        sectionLead:'Debería decirte la verdad con tiempo suficiente para hacer algo al respecto.',
-        painTitles:['Miedo','Presión','Dignidad'],
-        painText:['No saber si estás listo. No saber qué pago realmente es seguro. No saber si un error puede arruinarlo todo.','La mayoría quiere respuestas, no un teléfono lleno de prestamistas tratando de cerrar antes de que entiendas los números.','Keyloom te permite revisar tu situación en privado primero — sin vergüenza, sin juicio y sin tratarte como un prospecto.'],
-        quote:'“Antes de preguntar qué puedes comprar, quizá la mejor pregunta es qué tipo de vida te deja ese pago.”',
-        quoteSub:'Keyloom está hecho para el comprador que quiere la verdad antes de enamorarse de una casa, una tasa o un pago que nunca fue explicado claramente.',
-        howTitle:'Cómo funciona Keyloom',
-        howLead:'Tan simple que puedes empezar en minutos. Tan serio que puede cambiar cómo las personas se preparan para comprar casa.',
-        stepTitles:['Responde unas preguntas privadas','Ve tu Puntaje BuyReady','Avanza solo cuando estés listo'],
-        stepText:['Sin revisión dura. Sin envío a prestamistas. Solo lo suficiente para entender desde dónde empiezas.','Entiende ingresos, ahorros, crédito y tu siguiente mejor paso sin sentirte juzgado.','Si quieres ayuda después, tú controlas cuándo y cómo hablar con un profesional licenciado.'],
-        bottomTitle:'Tu respuesta está a menos de 5 minutos.',
-        bottomSub:'Únete al acceso anticipado y deja de adivinar dónde estás.',
-        bottomBtn:'Unirme al acceso anticipado →',
-        footer:'<div class="footer-disclaimer">Keyloom Financial Technologies LLC no es un prestamista, corredor hipotecario, originador hipotecario, suscriptor, asesor financiero ni servicio de reparación de crédito. Keyloom no toma decisiones crediticias, no suscribe préstamos, no emite preaprobaciones ni determina elegibilidad para productos hipotecarios. El Puntaje BuyReady es únicamente una herramienta educativa de autoevaluación. No es una preaprobación, precalificación, estimación de préstamo, decisión de suscripción ni compromiso de otorgar crédito. La elegibilidad hipotecaria real, los términos del préstamo y las decisiones de aprobación son determinadas únicamente por prestamistas autorizados y sus suscriptores según sus propios criterios. Keyloom no garantiza ningún resultado con ningún prestamista. Los puntajes mostrados en esta página son ejemplos ilustrativos y no reflejan datos reales de usuarios.</div><div class="footer-bottom"><strong>Keyloom</strong> no es un prestamista. Somos una plataforma educativa y de claridad. © 2026 Keyloom Financial Technologies.</div>',
-        errName:'Por favor ingresa tu nombre.',
-        errEmail:'Por favor ingresa un correo electrónico válido.',
-        errGoal:'Por favor selecciona qué estás tratando de hacer.'
+        sectionTitle:'El proceso hipotecario no deber\u00eda hacerte sentir perdido.',
+        sectionLead:'Deber\u00eda decirte la verdad con tiempo suficiente para hacer algo al respecto.',
+        painTitles:['Miedo','Presi\u00f3n','Dignidad'],
+        painText:['No saber si est\u00e1s listo. No saber qu\u00e9 pago realmente es seguro. No saber si un error puede arruinarlo todo.','La mayor\u00eda quiere respuestas, no un tel\u00e9fono lleno de prestamistas tratando de cerrar antes de que entiendas los n\u00fameros.','Keyloom te permite revisar tu situaci\u00f3n en privado primero \u2014 sin verg\u00fcenza, sin juicio y sin tratarte como un prospecto.'],
+        quote:'\u201cAntes de preguntar qu\u00e9 puedes comprar, quiz\u00e1 la mejor pregunta es qu\u00e9 tipo de vida te deja ese pago.\u201d',
+        quoteSub:'Keyloom est\u00e1 hecho para el comprador que quiere la verdad antes de enamorarse de una casa, una tasa o un pago que nunca fue explicado claramente.',
+        howTitle:'C\u00f3mo funciona Keyloom',howLead:'Tan simple que puedes empezar en minutos. Tan serio que puede cambiar c\u00f3mo las personas se preparan para comprar casa.',
+        stepTitles:['Responde unas preguntas privadas','Ve tu Puntaje BuyReady','Avanza solo cuando est\u00e9s listo'],
+        stepText:['Sin revisi\u00f3n dura. Sin env\u00edo a prestamistas. Solo lo suficiente para entender desde d\u00f3nde empiezas.','Entiende ingresos, ahorros, cr\u00e9dito y tu siguiente mejor paso sin sentirte juzgado.','Si quieres ayuda despu\u00e9s, t\u00fa controlas cu\u00e1ndo y c\u00f3mo hablar con un profesional licenciado.'],
+        bottomTitle:'Tu respuesta est\u00e1 a menos de 5 minutos.',bottomSub:'Un\u00e9te al acceso anticipado y deja de adivinar d\u00f3nde est\u00e1s.',bottomBtn:'Unirme al acceso anticipado \u2192',
+        footer:'<div class="footer-disclaimer">Keyloom Financial Technologies LLC no es un prestamista, corredor hipotecario, originador hipotecario, suscriptor, asesor financiero ni servicio de reparaci\u00f3n de cr\u00e9dito. Keyloom no toma decisiones crediticias, no suscribe pr\u00e9stamos, no emite preaprobaciones ni determina elegibilidad para productos hipotecarios. El Puntaje BuyReady es \u00fanicamente una herramienta educativa de autoevaluaci\u00f3n. No es una preaprobaci\u00f3n, precalificaci\u00f3n, estimaci\u00f3n de pr\u00e9stamo, decisi\u00f3n de suscripci\u00f3n ni compromiso de otorgar cr\u00e9dito. La elegibilidad hipotecaria real, los t\u00e9rminos del pr\u00e9stamo y las decisiones de aprobaci\u00f3n son determinadas \u00fanicamente por prestamistas autorizados y sus suscriptores seg\u00fan sus propios criterios. Keyloom no garantiza ning\u00fan resultado con ning\u00fan prestamista. Los puntajes mostrados en esta p\u00e1gina son ejemplos ilustrativos y no reflejan datos reales de usuarios.</div><div class="footer-bottom"><strong>Keyloom</strong> no es un prestamista. Somos una plataforma educativa y de claridad. \u00a9 2026 Keyloom Financial Technologies.</div>',
+        errName:'Por favor ingresa tu nombre.',errEmail:'Por favor ingresa un correo electr\u00f3nico v\u00e1lido.',errGoal:'Por favor selecciona qu\u00e9 est\u00e1s tratando de hacer.'
       }
     };
     let currentLang='en';
 
-    function setSelectOptions(select, t){
-      select.innerHTML='<option value="">'+t.goal+'</option>'+t.options.map(o=>'<option>'+o+'</option>').join('');
-    }
+    function setSelectOptions(select,t){select.innerHTML='<option value="">'+t.goal+'</option>'+t.options.map(o=>'<option>'+o+'</option>').join('');}
 
     function setLanguage(lang){
       currentLang=lang;
@@ -517,25 +473,25 @@
       document.getElementById('heroName').placeholder=t.firstName;
       document.getElementById('heroEmail').placeholder=t.email;
       const heroState=document.getElementById('heroState');
-      if(heroState && t.statePrompt){ heroState.options[0].textContent=t.statePrompt; }
+      if(heroState&&t.statePrompt)heroState.options[0].textContent=t.statePrompt;
       setSelectOptions(document.getElementById('heroGoal'),t);
       document.querySelector('#heroSignupForm .cta').textContent=t.secure;
       document.querySelector('#signup .micro').textContent=t.micro;
       document.querySelector('.private-label').textContent=t.privateLabel;
       const scoreLabel=document.querySelector('.score-label');
-      if(scoreLabel) scoreLabel.textContent = lang==='es' ? 'Puntaje BuyReady™' : 'BuyReady Score™';
+      if(scoreLabel)scoreLabel.textContent=lang==='es'?'Puntaje BuyReady\u2122':'BuyReady Score\u2122';
       document.querySelector('.live-pill').textContent=t.live;
       const liveCorner=document.getElementById('liveCorner');
-      if(liveCorner) liveCorner.textContent=t.live;
+      if(liveCorner)liveCorner.textContent=t.live;
       const gaugeSub=document.querySelector('.gauge-sub');
-      if(gaugeSub) gaugeSub.textContent = lang==='es' ? 'Puntaje' : 'Score';
+      if(gaugeSub)gaugeSub.textContent=lang==='es'?'Puntaje':'Score';
       document.querySelector('.score-status-pill').textContent=t.homeReady;
       document.getElementById('scoreExplainerTitle').textContent=t.scoreTitle;
       document.getElementById('scoreExplainerText').textContent=t.scoreText;
       document.getElementById('scoreExplainerDiff').textContent=t.scoreDifference;
       document.getElementById('scoreFactors').innerHTML=t.scoreFactors.map(item=>'<li>'+item+'</li>').join('');
       const bars=document.querySelectorAll('.bar span:first-child');
-      bars[0].textContent=t.income; bars[1].textContent=t.savings; bars[2].textContent=t.credit;
+      bars[0].textContent=t.income;bars[1].textContent=t.savings;bars[2].textContent=t.credit;
       document.querySelector('.notice').textContent=t.scoreNotice;
       document.querySelector('.modal h3').textContent=t.modalTitle;
       document.querySelector('.modal-copy').textContent=t.modalCopy;
@@ -545,13 +501,9 @@
       document.querySelector('#waitlistForm .cta').textContent=t.modalButton;
       document.querySelector('#modalFormState .micro').textContent=t.nav;
       document.querySelector('.success-state h4').textContent=t.thank;
-      document.querySelector('.success-state .waitlist-badge').childNodes[0].textContent=t.spotPrefix;
       document.querySelector('.waitlist-badge').firstChild.textContent=t.spotPrefix;
       const successPs=document.querySelectorAll('.success-state p');
-      successPs[0].textContent=t.thank1;
-      successPs[1].textContent=t.thank2;
-      successPs[2].textContent=t.thank3;
-      successPs[3].innerHTML='<strong>'+t.thank4+'</strong>';
+      successPs[0].textContent=t.thank1;successPs[1].textContent=t.thank2;successPs[2].textContent=t.thank3;successPs[3].innerHTML='<strong>'+t.thank4+'</strong>';
       document.querySelector('.success-state .cta').textContent=t.back;
       document.querySelector('.section h2').textContent=t.sectionTitle;
       document.querySelector('.lead').textContent=t.sectionLead;
@@ -576,9 +528,7 @@
       gaugeAnimated=true;
       const arc=document.getElementById('gauge-arc');
       const numEl=document.getElementById('gauge-num');
-      const score=78;
-      const totalDash=355;
-      const duration=1200;
+      const score=78,totalDash=355,duration=1200;
       let start=null;
       const bars=[
         {fill:document.getElementById('bar-income'),num:document.getElementById('bar-income-num'),target:85},
@@ -588,17 +538,11 @@
       function ease(t){return t<0.5?2*t*t:(4-2*t)*t-1;}
       function step(ts){
         if(!start)start=ts;
-        const elapsed=ts-start;
-        const progress=Math.min(elapsed/duration,1);
-        const eased=ease(progress);
+        const elapsed=ts-start,progress=Math.min(elapsed/duration,1),eased=ease(progress);
         arc.style.strokeDashoffset=totalDash-(totalDash*(score/100)*eased);
         numEl.textContent=Math.round(score*eased);
-        const barProgress=Math.min(Math.max((elapsed-150)/(duration-150),0),1);
-        const barEase=ease(barProgress);
-        bars.forEach(b=>{
-          b.fill.style.width=(b.target*barEase)+'%';
-          b.num.textContent=Math.round(b.target*barEase);
-        });
+        const bp=Math.min(Math.max((elapsed-150)/(duration-150),0),1),be=ease(bp);
+        bars.forEach(b=>{b.fill.style.width=(b.target*be)+'%';b.num.textContent=Math.round(b.target*be);});
         if(progress<1){requestAnimationFrame(step);}else{
           numEl.textContent=score;
           bars.forEach(b=>{b.fill.style.width=b.target+'%';b.num.textContent=b.target;});
@@ -607,37 +551,42 @@
       requestAnimationFrame(step);
     }
     try{
-      const gaugeObserver=new IntersectionObserver(entries=>{
-        entries.forEach(entry=>{if(entry.isIntersecting)animateGauge();});
-      },{threshold:0.3});
+      const gaugeObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)animateGauge();});},{threshold:0.3});
       gaugeObserver.observe(document.querySelector('.score-card'));
     }catch(e){animateGauge();}
 
-    const modal=document.getElementById('waitlistModal');const waitlistForm=document.getElementById('waitlistForm');const heroSignupForm=document.getElementById('heroSignupForm');const formState=document.getElementById('modalFormState');const successState=document.getElementById('successState');const spotNumber=document.getElementById('spotNumber');let seed=143;
-    function isValidEmail(v){return new RegExp('^[^ @]+@[^ @]+[.][^ @]+$').test(v.trim())}
+    const modal=document.getElementById('waitlistModal');
+    const waitlistForm=document.getElementById('waitlistForm');
+    const heroSignupForm=document.getElementById('heroSignupForm');
+    const formState=document.getElementById('modalFormState');
+    const successState=document.getElementById('successState');
+    const spotNumber=document.getElementById('spotNumber');
+    let seed=143;
+
+    function isValidEmail(v){return/^[^ @]+@[^ @]+[.][^ @]+$/.test(v.trim())}
     function showError(input,msg){input.setCustomValidity(msg);input.reportValidity()}
     function clearFormErrors(form){form.querySelectorAll('input,select').forEach(f=>f.setCustomValidity(''))}
-    function nextSpot(){const saved=parseInt(localStorage.getItem('keyloomSpot')||seed,10);const next=saved+1;localStorage.setItem('keyloomSpot',next);spotNumber.textContent='#'+next}
+    function nextSpot(){
+      const saved=parseInt(localStorage.getItem('keyloomSpot')||seed,10);
+      const next=saved+1;
+      localStorage.setItem('keyloomSpot',next);
+      spotNumber.textContent='#'+next;
+    }
     function openModal(showSuccess=false){
       modal.classList.add('active');
       document.body.style.overflow='hidden';
-      if(showSuccess){
-        formState.style.display='none';
-        successState.classList.add('active');
-      }else{
-        formState.style.display='block';
-        successState.classList.remove('active');
-      }
+      if(showSuccess){formState.style.display='none';successState.classList.add('active');}
+      else{formState.style.display='block';successState.classList.remove('active');}
       setLanguage(currentLang);
     }
-    function closeModal(){modal.classList.remove('active');document.body.style.overflow='auto'}
+    function closeModal(){modal.classList.remove('active');document.body.style.overflow='auto';}
     function scrollToSignup(){
-      const formSection=document.getElementById('signup');
-      if(!formSection)return;
-      const y=formSection.getBoundingClientRect().top+window.pageYOffset-32;
-      window.scrollTo({top:y,behavior:'smooth'});
+      const el=document.getElementById('signup');
+      if(!el)return;
+      window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-32,behavior:'smooth'});
     }
-    modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+    modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+
     heroSignupForm.addEventListener('submit',async e=>{
       e.preventDefault();
       clearFormErrors(heroSignupForm);
@@ -650,27 +599,11 @@
       if(!isValidEmail(email.value))return showError(email,t.errEmail);
       if(!state.value)return showError(state,currentLang==='es'?'Por favor selecciona tu estado.':'Please select your state.');
       if(!goal.value)return showError(goal,t.errGoal);
-      const { error } = await supabaseClient
-        .from('Waitlist')
-        .insert([
-          {
-            first_name: name.value.trim(),
-            email: email.value.trim(),
-            state: state.value,
-            goal: goal.value,
-            language: currentLang
-          }
-        ]);
-
-      if(error){
-        console.error(error);
-        alert(currentLang==='es' ? 'Algo salió mal. Inténtalo de nuevo.' : 'Something went wrong. Please try again.');
-        return;
-      }
-
-      nextSpot();
-      openModal(true);
+      const{error}=await supabaseClient.from('Waitlist').insert([{first_name:name.value.trim(),email:email.value.trim(),state:state.value,goal:goal.value,language:currentLang}]);
+      if(error){console.error(error);alert(currentLang==='es'?'Algo sali\u00f3 mal. Int\u00e9ntalo de nuevo.':'Something went wrong. Please try again.');return;}
+      nextSpot();openModal(true);
     });
+
     waitlistForm.addEventListener('submit',e=>{
       e.preventDefault();
       clearFormErrors(waitlistForm);
@@ -681,10 +614,7 @@
       if(!name.value.trim())return showError(name,t.errName);
       if(!isValidEmail(email.value))return showError(email,t.errEmail);
       if(!goal.value)return showError(goal,t.errGoal);
-      nextSpot();
-      formState.style.display='none';
-      successState.classList.add('active');
-      setLanguage(currentLang);
+      nextSpot();formState.style.display='none';successState.classList.add('active');setLanguage(currentLang);
     });
   </script>
 </body>
