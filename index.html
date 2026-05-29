@@ -119,13 +119,14 @@
     .footer-disclaimer{max-width:1080px;margin:0 auto 38px;font-size:15px;line-height:1.9;font-weight:500;color:rgba(255,255,255,.50);letter-spacing:-.01em;text-wrap:balance}
     .footer-bottom{font-size:18px;line-height:1.8;color:rgba(255,255,255,.74)}
     .footer-bottom strong{color:#fff;font-weight:800}
-    .scroll-pop{opacity:0;transform:translateY(18px) scale(.995);transition:opacity .55s ease,transform .75s cubic-bezier(.2,1,.3,1)}
+    .scroll-pop{opacity:0;transform:translateY(18px) scale(.995);transition:opacity .45s ease,transform .6s cubic-bezier(.2,1,.3,1)}
     .scroll-pop.in-view{opacity:1;transform:translateY(0) scale(1)}
-    .scroll-pop.delay-1{transition-delay:.08s}
-    .scroll-pop.delay-2{transition-delay:.16s}
-    .scroll-pop.delay-3{transition-delay:.24s}
-    .scroll-pop.delay-4{transition-delay:.32s}
+    .scroll-pop.delay-1{transition-delay:.06s}
+    .scroll-pop.delay-2{transition-delay:.12s}
+    .scroll-pop.delay-3{transition-delay:.18s}
+    .scroll-pop.delay-4{transition-delay:.24s}
     .lag-float{will-change:transform;transition:transform .08s linear}
+    @media(max-width:799px){.lag-float{transform:none!important;transition:none!important;will-change:auto}}
     @media(prefers-reduced-motion:reduce){.scroll-pop{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}.lag-float{transform:none!important;transition:none!important}}
     @media(min-width:1100px){h1{font-size:82px;max-width:760px}.subhead{font-size:20px;max-width:680px}.shock{max-width:690px}.score-card{padding:62px 42px 46px}.gauge-svg{width:360px;height:222px}.gauge-svg svg{width:360px;height:222px}.gauge-inner{top:104px}.g-num{font-size:70px}.gauge-scale{font-size:14px;padding:0 14px;bottom:10px}.visual-wrap{max-width:600px}.private-label{right:22px;top:28px}.score-status-pill{font-size:19px}.bar{font-size:15px;grid-template-columns:86px 1fr 40px}.notice{font-size:12px}}
     .modal-overlay{position:fixed;inset:0;background:rgba(15,45,41,.62);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;z-index:999}
@@ -144,7 +145,7 @@
     .success-state .cta{min-height:68px;min-width:280px;padding:0 38px;font-size:20px;font-weight:900;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;line-height:1;letter-spacing:-.03em;white-space:nowrap;margin-top:18px}
     @media(min-width:800px){.hero{grid-template-columns:minmax(0,1.08fr) minmax(420px,.92fr)!important;max-width:1280px!important;gap:54px!important;padding-top:24px!important;min-height:calc(100vh - 76px)!important;align-items:start!important}.hero>div:first-child{align-self:center}.visual-wrap{width:100%;max-width:560px;align-self:flex-start!important;margin-top:-26px}.signup-card{max-width:590px}.nav{max-width:1280px}.nav-note{display:block}.hero{grid-template-columns:1.05fr .95fr;padding-top:42px;min-height:auto}.proof-row{grid-template-columns:repeat(3,1fr)}.signup-card{padding:24px}.pain-grid,.steps{grid-template-columns:repeat(3,1fr)}.float-card{display:none}}
     @media(max-width:799px){.hero{grid-template-columns:1fr;max-width:620px}.visual-wrap{order:2}.hero>div:first-child{order:1}.score-card{max-width:100%}}
-    @media(max-width:520px){footer{padding:44px 20px 34px}.footer-disclaimer{font-size:13px;line-height:1.8;margin-bottom:34px}.footer-bottom{font-size:16px;line-height:1.7}.nav{padding-top:14px}.private-label{position:static;display:inline-flex;margin:0 0 16px 0;padding:10px 14px;font-size:12px}.brand{font-size:21px}.hero{padding-top:30px}.hero>div:first-child{text-align:center;display:flex;flex-direction:column;align-items:center}.eyebrow,h1,.subhead,.shock{margin-left:auto;margin-right:auto;text-align:center}.signup-card{text-align:left}.score-card{padding:44px 22px 36px;border-radius:30px}.gauge-svg{width:276px;height:172px}.gauge-svg svg{width:276px;height:172px}.gauge-inner{top:82px}.gauge-bg-glow{transform:translateY(-12px) scale(.88);transform-origin:center}.g-num{font-size:52px}.gauge-sub{font-size:10px;margin-top:5px}.gauge-scale{font-size:12px;bottom:16px}.gauge-scale span:first-child{left:11.5%;transform:translateX(-50%)}.gauge-scale span:last-child{right:11.5%;transform:translateX(50%)}.score-status-pill{font-size:16px;padding:9px 15px}.score-explainer{padding:16px;border-radius:20px}.score-explainer h3{font-size:17px}.score-explainer p{font-size:13px}.score-factors li{font-size:12.5px}.bar{grid-template-columns:66px 1fr 30px}.modal{padding:24px 18px;border-radius:27px;max-width:94vw}.success-state p{font-size:14px;line-height:1.65}.success-icon{width:72px;height:72px;font-size:30px}.success-state .cta{min-width:100%;font-size:18px}.quote{padding:26px 20px}}
+    @media(max-width:520px){footer{padding:44px 20px 34px}.footer-disclaimer{font-size:13px;line-height:1.8;margin-bottom:34px}.footer-bottom{font-size:16px;line-height:1.7}.nav{padding-top:14px}.private-label{position:static;display:inline-flex;margin:0 0 16px 0;padding:10px 14px;font-size:12px;transform:none}.private-label.scroll-pop{transform:translateY(18px) scale(.995)}.private-label.scroll-pop.in-view{transform:translateY(0) scale(1)}.brand{font-size:21px}.hero{padding-top:30px}.hero>div:first-child{text-align:center;display:flex;flex-direction:column;align-items:center}.eyebrow,h1,.subhead,.shock{margin-left:auto;margin-right:auto;text-align:center}.signup-card{text-align:left}.score-card{padding:44px 22px 36px;border-radius:30px}.gauge-svg{width:276px;height:172px}.gauge-svg svg{width:276px;height:172px}.gauge-inner{top:82px}.gauge-bg-glow{transform:translateY(-12px) scale(.88);transform-origin:center}.g-num{font-size:52px}.gauge-sub{font-size:10px;margin-top:5px}.gauge-scale{font-size:12px;bottom:16px}.gauge-scale span:first-child{left:11.5%;transform:translateX(-50%)}.gauge-scale span:last-child{right:11.5%;transform:translateX(50%)}.score-status-pill{font-size:16px;padding:9px 15px}.score-explainer{padding:16px;border-radius:20px}.score-explainer h3{font-size:17px}.score-explainer p{font-size:13px}.score-factors li{font-size:12.5px}.bar{grid-template-columns:66px 1fr 30px}.modal{padding:24px 18px;border-radius:27px;max-width:94vw}.success-state p{font-size:14px;line-height:1.65}.success-icon{width:72px;height:72px;font-size:30px}.success-state .cta{min-width:100%;font-size:18px}.quote{padding:26px 20px}}
   </style>
 </head>
 <body>
@@ -340,16 +341,37 @@
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
     function initScrollMotion(){
-      const motionTargets=['.eyebrow','h1','.subhead','.shock','.proof','.signup-card','.visual-wrap','.section h2','.lead','.pain-card','.quote','.step','.bottom-cta h2','.bottom-cta p','.bottom-cta .cta'];
+      const isMobile=window.innerWidth<=799;
+
+      // On mobile, animate the visual-wrap children individually in sequence
+      // rather than the whole visual-wrap block which pops in as one unit
+      const motionTargets=['.eyebrow','h1','.subhead','.shock','.proof','.signup-card','.section h2','.lead','.pain-card','.quote','.step','.bottom-cta h2','.bottom-cta p','.bottom-cta .cta'];
+      if(!isMobile) motionTargets.push('.visual-wrap');
+
       document.querySelectorAll(motionTargets.join(',')).forEach((el,i)=>{
         el.classList.add('scroll-pop');
         if(i%4) el.classList.add('delay-'+(i%4));
       });
+
+      // On mobile, animate score card children individually so they flow up in sequence
+      if(isMobile){
+        const mobileScoreEls=[
+          document.querySelector('.private-label'),
+          document.querySelector('.score-card')
+        ].filter(Boolean);
+        mobileScoreEls.forEach((el,i)=>{
+          el.classList.add('scroll-pop');
+          if(i>0) el.classList.add('delay-1');
+        });
+      }
+
       const observer=new IntersectionObserver(entries=>{
         entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}});
-      },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+      },{threshold:.05,rootMargin:'0px 0px -4% 0px'});
       document.querySelectorAll('.scroll-pop').forEach(el=>observer.observe(el));
-      const lagItems=document.querySelectorAll('.visual-wrap,.signup-card,.score-card,.quote');
+
+      const lagSelector=isMobile?'.score-card,.quote':'.visual-wrap,.signup-card,.score-card,.quote';
+      const lagItems=document.querySelectorAll(lagSelector);
       lagItems.forEach(el=>el.classList.add('lag-float'));
       let ticking=false;
       function updateLag(){
@@ -523,37 +545,65 @@
     }
 
     let gaugeAnimated=false;
-    function animateGauge(){
+    let barsAnimated=false;
+
+    function animateGaugeOnly(){
       if(gaugeAnimated)return;
       gaugeAnimated=true;
       const arc=document.getElementById('gauge-arc');
       const numEl=document.getElementById('gauge-num');
       const score=78,totalDash=355,duration=1200;
       let start=null;
-      const bars=[
-        {fill:document.getElementById('bar-income'),num:document.getElementById('bar-income-num'),target:85},
-        {fill:document.getElementById('bar-savings'),num:document.getElementById('bar-savings-num'),target:72},
-        {fill:document.getElementById('bar-credit'),num:document.getElementById('bar-credit-num'),target:78}
-      ];
       function ease(t){return t<0.5?2*t*t:(4-2*t)*t-1;}
       function step(ts){
         if(!start)start=ts;
         const elapsed=ts-start,progress=Math.min(elapsed/duration,1),eased=ease(progress);
         arc.style.strokeDashoffset=totalDash-(totalDash*(score/100)*eased);
         numEl.textContent=Math.round(score*eased);
-        const bp=Math.min(Math.max((elapsed-150)/(duration-150),0),1),be=ease(bp);
-        bars.forEach(b=>{b.fill.style.width=(b.target*be)+'%';b.num.textContent=Math.round(b.target*be);});
+        if(progress<1){requestAnimationFrame(step);}else{numEl.textContent=score;}
+      }
+      requestAnimationFrame(step);
+    }
+
+    function animateBars(){
+      if(barsAnimated)return;
+      barsAnimated=true;
+      const bars=[
+        {fill:document.getElementById('bar-income'),num:document.getElementById('bar-income-num'),target:85},
+        {fill:document.getElementById('bar-savings'),num:document.getElementById('bar-savings-num'),target:72},
+        {fill:document.getElementById('bar-credit'),num:document.getElementById('bar-credit-num'),target:78}
+      ];
+      const duration=900;
+      let start=null;
+      function ease(t){return t<0.5?2*t*t:(4-2*t)*t-1;}
+      function step(ts){
+        if(!start)start=ts;
+        const elapsed=ts-start,progress=Math.min(elapsed/duration,1),eased=ease(progress);
+        bars.forEach((b,i)=>{
+          const delay=i*120;
+          const bp=Math.min(Math.max((elapsed-delay)/(duration-delay),0),1);
+          const be=ease(bp);
+          b.fill.style.width=(b.target*be)+'%';
+          b.num.textContent=Math.round(b.target*be);
+        });
         if(progress<1){requestAnimationFrame(step);}else{
-          numEl.textContent=score;
           bars.forEach(b=>{b.fill.style.width=b.target+'%';b.num.textContent=b.target;});
         }
       }
       requestAnimationFrame(step);
     }
+
     try{
-      const gaugeObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)animateGauge();});},{threshold:0.3});
+      const gaugeObserver=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting)animateGaugeOnly();});
+      },{threshold:0.2});
       gaugeObserver.observe(document.querySelector('.score-card'));
-    }catch(e){animateGauge();}
+
+      const barsObserver=new IntersectionObserver(entries=>{
+        entries.forEach(e=>{if(e.isIntersecting)animateBars();});
+      },{threshold:0.5});
+      barsObserver.observe(document.getElementById('bar-income').closest('.bar'));
+    }catch(e){animateGaugeOnly();animateBars();}
 
     const modal=document.getElementById('waitlistModal');
     const waitlistForm=document.getElementById('waitlistForm');
